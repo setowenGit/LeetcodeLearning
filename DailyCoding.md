@@ -1,6 +1,7 @@
 # Leetcode 每日一题
 
 ## [课程表4 2023.09.12](https://leetcode.cn/problems/course-schedule-iv/description/)
+
 ![](./fig/1.jpg)
 
 最初解法：纯建图后DFS
@@ -48,6 +49,7 @@ void dfs(vector<vector<int>>& graph, int u, int v, vector<bool>& ans, vector<boo
 3.任何一对 u 和 v ，u 总在 v 之前（这里的两个字母分别表示的是一条线段的两个端点，u 表示起点，v 表示终点）
 
 * DFS+拓扑排序
+
 ![](./fig/3.jpg)
 ```c++
 vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
@@ -84,6 +86,7 @@ vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisi
 ```
 
 * BFS+拓扑排序
+
 ![](./fig/2.jpg)
 ```c++
 vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
@@ -128,6 +131,7 @@ vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisi
 * 注意：由于DFS是从最深回溯到最浅的结点的，所以遍历的是cur的子树的子树，而BFS是从浅入深地，所以遍历的是cur的父节点
 
 ## [检查骑士巡视方案 2023.09.13](https://leetcode.cn/problems/check-knight-tour-configuration/description/)
+
 ![](./fig/4.jpg)
 
 方法一：深度优先搜索
@@ -184,6 +188,7 @@ bool checkValidGrid(vector<vector<int>>& grid) {
 ```
 
 ## [可以攻击国王的皇后 2023.09.14](https://leetcode.cn/problems/queens-that-can-attack-the-king/description/)
+
 ![](./fig/5.jpg)
 
 方法一：模拟和迭代的思想，可认为是DFS
@@ -261,6 +266,7 @@ vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>
 ```
 
 ## [宝石补给 2023.09.15](https://leetcode.cn/problems/WHnhjV/description/)
+
 ![](./fig/6.jpg)
 
 方法一：数组、模拟
