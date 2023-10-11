@@ -1,6 +1,6 @@
 # Leetcode 每日一题
 
-##[课程表4 2023.09.12](https://leetcode.cn/problems/course-schedule-iv/description/)
+## [课程表4 2023.09.12](https://leetcode.cn/problems/course-schedule-iv/description/)
 ![](./fig/1.jpg)
 
 最初解法：纯建图后DFS
@@ -127,7 +127,7 @@ vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisi
 
 * 注意：由于DFS是从最深回溯到最浅的结点的，所以遍历的是cur的子树的子树，而BFS是从浅入深地，所以遍历的是cur的父节点
 
-##[检查骑士巡视方案 2023.09.13](https://leetcode.cn/problems/check-knight-tour-configuration/description/)
+## [检查骑士巡视方案 2023.09.13](https://leetcode.cn/problems/check-knight-tour-configuration/description/)
 ![](./fig/4.jpg)
 
 方法一：深度优先搜索
@@ -183,7 +183,7 @@ bool checkValidGrid(vector<vector<int>>& grid) {
 }
 ```
 
-##[可以攻击国王的皇后 2023.09.14](https://leetcode.cn/problems/queens-that-can-attack-the-king/description/)
+## [可以攻击国王的皇后 2023.09.14](https://leetcode.cn/problems/queens-that-can-attack-the-king/description/)
 ![](./fig/5.jpg)
 
 方法一：模拟和迭代的思想，可认为是DFS
@@ -260,7 +260,7 @@ vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>
 }
 ```
 
-##[宝石补给 2023.09.15](https://leetcode.cn/problems/WHnhjV/description/)
+## [宝石补给 2023.09.15](https://leetcode.cn/problems/WHnhjV/description/)
 ![](./fig/6.jpg)
 
 方法一：数组、模拟
@@ -276,7 +276,7 @@ int giveGem(vector<int>& gem, vector<vector<int>>& operations) {
 }
 ```
 
-##[打家劫舍3 2023.09.18](https://leetcode.cn/problems/house-robber-iii/description/)
+## [打家劫舍3 2023.09.18](https://leetcode.cn/problems/house-robber-iii/description/)
 ![](./fig/7.jpg)
 
 方法一：动态规划+DFS
@@ -302,7 +302,7 @@ vector<int> dp_processing(TreeNode* cur){
 }
 ```
 
-##[打家劫舍4 2023.09.19（难题）](https://leetcode.cn/problems/house-robber-iv/description/)
+## [打家劫舍4 2023.09.19（难题）](https://leetcode.cn/problems/house-robber-iv/description/)
 ![](./fig/8.jpg)
 
 参考题解：https://leetcode.cn/problems/house-robber-iv/solutions/2094631/dao-ge-shua-ti-er-fen-fa-dong-tai-gui-hu-la3m/
@@ -396,7 +396,7 @@ int lower_bound3(vector<int>& nums, int target){
 }
 ```
 
-#####upper_bound的三种写法（在lower_bound基础上加多了一个等于号判断即可）
+##### upper_bound的三种写法（在lower_bound基础上加多了一个等于号判断即可）
 ```c++
 // 搜索第一个大于target的数的索引（左闭右闭写法）
 int upper_bound1(vector<int>& nums, int target){
@@ -440,7 +440,7 @@ int upper_bound3(vector<int>& nums, int target){
 
 > 视频 https://www.bilibili.com/video/BV1AP41137w7/?vd_source=1dc1f5616fa7bc05e0def8e62f42c924
 
-##[拿硬币 2023.09.20](https://leetcode.cn/problems/na-ying-bi/description/)
+## [拿硬币 2023.09.20](https://leetcode.cn/problems/na-ying-bi/description/)
 ![](./fig/10.jpg)
 
 方法一：贪心（模拟）
@@ -456,7 +456,7 @@ int minCount(vector<int>& coins) {
 }
 ```
 
-##[收集树中金币 2023.09.21（难题）](https://leetcode.cn/problems/collect-coins-in-a-tree/description/)
+## [收集树中金币 2023.09.21（难题）](https://leetcode.cn/problems/collect-coins-in-a-tree/description/)
 ![](./fig/11.jpg)
 ![](./fig/12.jpg)
 
@@ -518,7 +518,7 @@ int collectTheCoins(vector<int>& coins, vector<vector<int>>& edges) {
 }
 ```
 
-##[将钱分给最多的儿童 2023.09.22](https://leetcode.cn/problems/distribute-money-to-maximum-children/description/)
+## [将钱分给最多的儿童 2023.09.22](https://leetcode.cn/problems/distribute-money-to-maximum-children/description/)
 
 ![](fig/2023-09-22-11-26-01.png)
 
@@ -536,7 +536,7 @@ int distMoney(int money, int children) {
 }
 ```
 
-##[递枕头 2023.09.26](https://leetcode.cn/problems/pass-the-pillow/description/)
+## [递枕头 2023.09.26](https://leetcode.cn/problems/pass-the-pillow/description/)
 
 ![](fig/2023-09-26-10-32-08.png)
 
@@ -550,7 +550,7 @@ int passThePillow(int n, int time) {
 }
 ```
 
-##[餐厅过滤器 2023.09.27](https://leetcode.cn/problems/filter-restaurants-by-vegan-friendly-price-and-distance/description/)
+## [餐厅过滤器 2023.09.27](https://leetcode.cn/problems/filter-restaurants-by-vegan-friendly-price-and-distance/description/)
 ![](fig/2023-09-27-10-39-25.png)
 
 方法一：数组处理+排序
@@ -601,7 +601,7 @@ sort(filter.begin(), filter.end(), [](vector<int> &v1, vector<int> &v2) -> bool 
 
 在函数判断里，返回true的排在前面，也就是说v1[1]>v2[1]时，返回true，则v1排在v2前面
 
-##[花期内花的数目 2023.09.28](https://leetcode.cn/problems/number-of-flowers-in-full-bloom/description/)
+## [花期内花的数目 2023.09.28](https://leetcode.cn/problems/number-of-flowers-in-full-bloom/description/)
 
 ![](fig/2023-09-28-10-49-40.png)
 
@@ -678,7 +678,7 @@ vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) 
 }
 ```
 
-##[股票价格跨度 2023.10.07](https://leetcode.cn/problems/online-stock-span/description/)
+## [股票价格跨度 2023.10.07](https://leetcode.cn/problems/online-stock-span/description/)
 ![](fig/2023-10-08-10-26-13.png)
 
 方法一：单调栈
@@ -703,7 +703,7 @@ int next(int price) {
 }
 ```
 
-##[股票价格波动 2023.10.08](https://leetcode.cn/problems/stock-price-fluctuation/description/)
+## [股票价格波动 2023.10.08](https://leetcode.cn/problems/stock-price-fluctuation/description/)
 ![](fig/2023-10-08-11-33-08.png)
 
 方法一：哈希表+多重有序集合
@@ -774,7 +774,7 @@ private:
 };
 ```
 
-##[最小和分割 2023.10.09](https://leetcode.cn/problems/split-with-minimum-sum/description/)
+## [最小和分割 2023.10.09](https://leetcode.cn/problems/split-with-minimum-sum/description/)
 ![](fig/2023-10-09-22-30-27.png)
 
 方法一：贪心
@@ -797,7 +797,7 @@ int splitNum(int num) {
 }
 ```
 
-##[移动机器人 2023.10.10](https://leetcode.cn/problems/movement-of-robots/description/)
+## [移动机器人 2023.10.10](https://leetcode.cn/problems/movement-of-robots/description/)
 ![](fig/2023-10-10-11-06-15.png)
 
 方法一：脑筋急转弯？
@@ -844,10 +844,10 @@ int sumDistance(vector<int>& nums, string s, int d) {
 }
 ```
 
-##[奖励最顶尖的K名学生 2023.10.11](https://leetcode.cn/problems/reward-top-k-students/description/)
+## [奖励最顶尖的K名学生 2023.10.11](https://leetcode.cn/problems/reward-top-k-students/description/)
 ![](fig/2023-10-11-12-04-22.png)
 
-####重点字符串匹配算法——[KMP算法](https://leetcode.cn/problems/implement-strstr/solution/duo-tu-yu-jing-xiang-jie-kmp-suan-fa-by-w3c9c/)
+#### 重点字符串匹配算法——[KMP算法](https://leetcode.cn/problems/implement-strstr/solution/duo-tu-yu-jing-xiang-jie-kmp-suan-fa-by-w3c9c/)
 
 寻找字符串中的匹配字符串最先出现的位置
 ```c++
