@@ -851,6 +851,7 @@ int sumDistance(vector<int>& nums, string s, int d) {
 ```
 
 ## [奖励最顶尖的K名学生 2023.10.11](https://leetcode.cn/problems/reward-top-k-students/description/)
+
 ![](fig/2023-10-11-12-04-22.png)
 
 #### 重点字符串匹配算法——[KMP算法](https://leetcode.cn/problems/implement-strstr/solution/duo-tu-yu-jing-xiang-jie-kmp-suan-fa-by-w3c9c/)
@@ -958,3 +959,32 @@ vector<int> topStudents(vector<string>& positive_feedback, vector<string>& negat
     return ans;
 }
 ```
+
+## [找出数组的串联质 2023.10.12](https://leetcode.cn/problems/find-the-array-concatenation-value/description/)
+
+![](fig/2023-10-12-12-30-18.png)
+
+方法一：直接模拟
+
+```c++
+long long findTheArrayConcVal(vector<int>& nums) {
+    long long sum = 0;
+    for(int left = 0, right = nums.size() - 1; left <= right; left++, right--){
+        if(left != right){
+            int tmp = nums[right];
+            while(tmp != 0){
+                tmp /= 10;
+                nums[left] *= 10;
+            }
+            sum += (nums[left] + nums[right]);
+            // 或者直接用下面的函数，stoi是将n进制的字符串转化为十进制的函数
+            // sum += stoi(to_string(nums[left]) + to_string(nums[right]));
+        }
+        else{
+            sum += nums[left];
+        }
+    }
+    return sum;
+}
+```
+
