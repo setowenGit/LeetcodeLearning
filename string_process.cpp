@@ -93,13 +93,61 @@ vector<int> topStudents(vector<string>& positive_feedback, vector<string>& negat
     return ans;
 }
 
+    int check(string& s, int left, int right){
+        int len = right - left + 1;
+        if(len > 1 && s[left] == '0') {return -1;}
+        int num = 0;
+        for(int i = left; i <= right; i++){
+            num = num * 10 + (s[i] - '0');
+        }
+        if(num > 255) {return -1;}
+        return num;
+    }
+    
+
+void dfs(string& s, int index, int len, vector<string>& path, vector<string>& ans, int splitimes){
+        if(index == len){
+            if(splitimes == 4){
+                string tmp = "";
+                for(int j = 0; j < path.size(); j++){
+                    tmp += path[j];
+                    if(j != path.size()-1) {tmp += ".";}
+                }
+                ans.emplace_back(tmp);
+            }
+            return;
+        }
+         if (len - index < (4 - splitimes) || len - index > 3 * (4 - splitimes)) {
+            return;
+        }
+        for(int i = 0; i < 3; i++){
+            if(index + i >= len) {break;}
+            int ipSegment = check(s, index, index + i);
+            if (ipSegment != -1) {
+                // 在判断是 ip 段的情况下，才去做截取
+                path.emplace_back(s.substr(index, i + 1));
+                dfs(s, len, index + i + 1, path, ans, splitimes + 1);
+                path.pop_back();
+            }
+        }
+    }
+
+
+
+vector<string> restoreIpAddresses(string s) {
+        int len = s.length();
+        vector<string> ans;
+        if(len < 4 || len > 12) {return ans;} //超出IP长度直接返回
+        vector<string> path;
+        dfs(s, 0, len, path, ans, 0);
+        
+        return ans;
+    }
+
+    
+
 
 int main(){
-    vector<string> positive_feedback ={"fkeofjpc","qq","iio"};
-    vector<string> negative_feedback = {"jdh","khj","eget","rjstbhe","yzyoatfyx","wlinrrgcm"};
-    vector<string> report = {"rjstbhe eget kctxcoub urrmkhlmi yniqafy fkeofjpc iio yzyoatfyx khj iio","gpnhgabl qq qq fkeofjpc dflidshdb qq iio khj qq yzyoatfyx","tizpzhlbyb eget z rjstbhe iio jdh jdh iptxh qq rjstbhe","jtlghe wlinrrgcm jnkdbd k iio et rjstbhe iio qq jdh","yp fkeofjpc lkhypcebox rjstbhe ewwykishv egzhne jdh y qq qq","fu ql iio fkeofjpc jdh luspuy yzyoatfyx li qq v","wlinrrgcm iio qq omnc sgkt tzgev iio iio qq qq","d vhg qlj khj wlinrrgcm qq f jp zsmhkjokmb rjstbhe"};
-    vector<int> student_id = {96537918,589204657,765963609,613766496,43871615,189209587,239084671,908938263};
-    int k = 3;
-    vector<int> ans = topStudents(positive_feedback, negative_feedback, report, student_id, k);
+    restoreIpAddresses("25525511135");
     return 0;
 }

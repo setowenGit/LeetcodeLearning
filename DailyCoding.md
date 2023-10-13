@@ -988,3 +988,156 @@ long long findTheArrayConcVal(vector<int>& nums) {
 }
 ```
 
+## [复原IP地址 2023.10.13（难题）](https://leetcode.cn/problems/restore-ip-addresses/description/)
+
+2023年阿里巴巴面试手撕代码题
+
+![](fig/2023-10-13-11-06-10.png)
+
+在完成这一题之前先完成[分割回文串](https://leetcode.cn/problems/palindrome-partitioning/description/),复原IP地址这一题实际上就是分割回文串这一题的题解再修改一下判断函数就可以了
+
+![](fig/2023-10-13-11-07-07.png)
+
+参考题解：https://leetcode.cn/problems/palindrome-partitioning/solutions/54233/hui-su-you-hua-jia-liao-dong-tai-gui-hua-by-liweiw/
+
+方法一：回溯（DFS）
+
+![](fig/2023-10-13-11-09-16.png)
+
+```c++
+vector<vector<string>> partition(string s) {
+    int len = s.length();
+    vector<vector<string>> ans;
+    if(len == 0) {return ans;}
+    vector<string> path;
+    dfs(s, 0, len, path, ans);
+    return ans;
+}
+
+void dfs(string& s, int index, int len, vector<string>& path, vector<vector<string>>& ans){
+    if(index == len){
+        ans.emplace_back(path);
+        return;
+    }
+    for(int i = index; i < len; i++){
+        if(!check(s, index, i)) {continue;}
+        path.emplace_back(s.substr(index, i - index + 1));// 先存这个子串后再回溯，substr函数提出子串
+        dfs(s, i + 1, len, path, ans); // 注意这里dfs的起点是i + 1
+        path.pop_back();
+    }
+}
+
+// 判断是否是回文串
+bool check(string& s, int left, int right){
+    while(left < right){
+        if(s[left] != s[right]) {return false;}
+        left ++;
+        right --;
+    }
+    return true;
+}
+```
+
+方法二：回溯（代码随想录版本）
+
+代码随想录参考：https://programmercarl.com/0131.%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2.html#%E6%80%9D%E8%B7%AF
+
+```c++
+class Solution {
+private:
+    vector<vector<string>> result;
+    vector<string> path; // 放已经回文的子串
+    void backtracking (const string& s, int startIndex) {
+        // 如果起始位置已经大于s的大小，说明已经找到了一组分割方案了
+        if (startIndex >= s.size()) {
+            result.push_back(path);
+            return;
+        }
+        for (int i = startIndex; i < s.size(); i++) {
+            if (isPalindrome(s, startIndex, i)) {   // 是回文子串
+                // 获取[startIndex,i]在s中的子串
+                string str = s.substr(startIndex, i - startIndex + 1);
+                path.push_back(str);
+            } else {                                // 不是回文，跳过
+                continue;
+            }
+            backtracking(s, i + 1); // 寻找i+1为起始位置的子串
+            path.pop_back(); // 回溯过程，弹出本次已经添加的子串
+        }
+    }
+    bool isPalindrome(const string& s, int start, int end) {
+        for (int i = start, j = end; i < j; i++, j--) {
+            if (s[i] != s[j]) {
+                return false;
+            }
+        }
+        return true;
+    }
+public:
+    vector<vector<string>> partition(string s) {
+        result.clear();
+        path.clear();
+        backtracking(s, 0);
+        return result;
+    }
+};
+```
+
+现在看回原题
+
+代码随想录参考：https://leetcode.cn/problems/restore-ip-addresses/solutions/850482/dai-ma-sui-xiang-lu-93-fu-yuan-ip-di-zhi-pzjo/
+```c++
+class Solution {
+private:
+    vector<string> result;// 记录结果
+    // startIndex: 搜索的起始位置，pointNum:添加逗点的数量
+    void backtracking(string& s, int startIndex, int pointNum) {
+        if (pointNum == 3) { // 逗点数量为3时，分隔结束
+            // 判断第四段子字符串是否合法，如果合法就放进result中
+            if (isValid(s, startIndex, s.size() - 1)) {
+                result.push_back(s);
+            }
+            return;
+        }
+        for (int i = startIndex; i < s.size(); i++) {
+            if (isValid(s, startIndex, i)) { // 判断 [startIndex,i] 这个区间的子串是否合法
+                s.insert(s.begin() + i + 1 , '.');  // 在i的后面插入一个逗点
+                pointNum++;
+                backtracking(s, i + 2, pointNum);   // 插入逗点之后下一个子串的起始位置为i+2
+                pointNum--;                         // 回溯
+                s.erase(s.begin() + i + 1);         // 回溯删掉逗点
+            } else break; // 不合法，直接结束本层循环
+        }
+    }
+    // 判断字符串s在左闭又闭区间[start, end]所组成的数字是否合法
+    bool isValid(const string& s, int start, int end) {
+        if (start > end) {
+            return false;
+        }
+        if (s[start] == '0' && start != end) { // 0开头的数字不合法
+                return false;
+        }
+        int num = 0;
+        for (int i = start; i <= end; i++) {
+            if (s[i] > '9' || s[i] < '0') { // 遇到非数字字符不合法
+                return false;
+            }
+            num = num * 10 + (s[i] - '0');
+            if (num > 255) { // 如果大于255了不合法
+                return false;
+            }
+        }
+        return true;
+    }
+public:
+    vector<string> restoreIpAddresses(string s) {
+        result.clear();
+        if (s.size() < 4 || s.size() > 12) return result; // 算是剪枝了
+        backtracking(s, 0, 0);
+        return result;
+    }
+};
+```
+
+
+
