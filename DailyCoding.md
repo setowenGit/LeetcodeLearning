@@ -1139,5 +1139,24 @@ public:
 };
 ```
 
+## [只出现一次的数字 2023.10.14](https://leetcode.cn/problems/single-number/description/)
+
+![](fig/2023-10-14-14-12-49.png)
+
+方法一：位运算，使用异或
+
+![](fig/2023-10-14-14-13-20.png)
+
+```c++
+int singleNumber(vector<int>& nums) {
+    int ans = 0;
+    for(auto& n : nums){
+        ans ^= n;
+    }
+    return ans;
+}
+```
+
+
 
 
