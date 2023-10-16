@@ -1157,6 +1157,53 @@ int singleNumber(vector<int>& nums) {
 }
 ```
 
+## [只出现一次的数字II 2023.10.15](https://leetcode.cn/problems/single-number-ii/description/)
+
+![](fig/2023-10-16-11-21-03.png)
+
+方法一：位运算，使用异或
+
+```c++
+int singleNumber(vector<int>& nums) {
+    vector<int> cnts(32, 0);
+    for(int& n : nums){
+        for(int i = 0; i < 32; i++){
+            cnts[i] += (n >> i) & 1;
+        }
+    }
+    int ans = 0;
+    for(int i = 0; i < 32; i++){
+        if(cnts[i] % 3 != 0){
+            ans |= 1 << i;
+        }
+    }
+    return ans;
+}
+```
+
+## [只出现一次的数字III 2023.10.16](https://leetcode.cn/problems/single-number-iii/description/)
+
+![](fig/2023-10-16-11-01-48.png)
+
+方法一：位运算，使用异或
+
+```c++
+vector<int> singleNumber(vector<int>& nums) {
+    int n = 0;
+    for(auto& i : nums) {n = n ^ i;}
+    int index = 1;
+    while((n & index) == 0){// 由低位到高位找到两个元素第一个不相等的位
+        index <<= 1;
+    }
+    vector<int> ans = {0, 0};
+    for(auto& i : nums){
+        if(i & index) {ans[0] ^= i;}
+        else {ans[1] ^= i;}
+    }
+    return ans;
+}
+```
+
 
 
 
