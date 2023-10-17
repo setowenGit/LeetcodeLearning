@@ -1,12 +1,12 @@
 # Leetcode Notes
 
-##一、排序算法
+## 一、排序算法
 
 [刷题指南](https://leetcode.cn/circle/discuss/KIfqN3/)
 
 ---
 
-###十大排序算法（升序）
+### 十大排序算法（升序）
 
 重要算法：快速排序、归并排序、堆排序
 
@@ -14,7 +14,7 @@
 
 可以使用[这题](https://leetcode.cn/problems/sort-an-array/description/)练习一下基础的排序算法
 
-####(1) 快速排序（重点）
+#### (1) 快速排序（重点）
 
 分治的思想，递归地随机选择主元，然后将主元放在正确的位置
 
@@ -45,7 +45,7 @@ vector<int> quickSort(vector<int>& nums){
 }
 ```
 
-####(2) 归并排序（重点）
+#### (2) 归并排序（重点）
 分治的思想，最适用于**外部排序**
 
 ![](fig/2023-09-25-17-16-59.png)
@@ -75,7 +75,7 @@ vector<int> mergeSort(vector<int>& nums){
 }
 ```
 
-####(3) 堆排序（重点）
+#### (3) 堆排序（重点）
 ![](fig/2023-09-25-17-16-36.png)
 
 ```c++
@@ -108,7 +108,7 @@ vector<int> heapSort(vector<int>& nums){
 }
 ```
 
-####(4) 选择排序（了解）
+#### (4) 选择排序（了解）
 
 每次从后面的未排序部分选出最小的数挪到前面的排序部分中的尾部
 
@@ -143,7 +143,7 @@ ListNode* selectSort(ListNode* head){
     return head;
 }
 ```
-####(5) 冒泡排序（了解）
+#### (5) 冒泡排序（了解）
 ```c++
 vector<int> bubbleSort(vector<int>& nums){
     int n = nums.size();
@@ -157,7 +157,7 @@ vector<int> bubbleSort(vector<int>& nums){
 }
 ```
 
-####(6) 插入排序（熟悉）
+#### (6) 插入排序（熟悉）
 
 每次把后面的未排序部分中的数按顺序挪到前面的排序部分中的合适位置
 
@@ -204,7 +204,7 @@ ListNode* insertSort(ListNode* head){
 }
 ```
 
-####(7) 希尔排序（了解）
+#### (7) 希尔排序（了解）
 
 ![](fig/2023-09-26-15-17-54.png)
 
@@ -229,7 +229,7 @@ vector<int> shellSort(vector<int>& nums){
 }
 ```
 
-####(8) 计数排序（了解）
+#### (8) 计数排序（了解）
 
 ![](fig/2023-09-26-15-37-55.png)
 
@@ -253,7 +253,7 @@ vector<int> countingSort(vector<int>& nums){
 }
 ```
 
-####(9) 桶排序（了解）
+#### (9) 桶排序（了解）
 
 相当于将数组分为若干份，每一份放进一个桶里进行内部的排序，后将桶中的数组合并在一起即可
 
@@ -283,4 +283,52 @@ vector<int> bucketSort(vector<int>& nums, int bucket_size){
 
 ####(10) 基数排序（不用学习）
 
-由于基数排序只能用在非负数数组的排序，局限性很大，故一般不使用     
+由于基数排序只能用在非负数数组的排序，局限性很大，故一般不使用
+
+### 快速排序习题
+
+#### （1）[LCR164 破解闯关密码](https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/description/)
+
+![](fig/2023-10-17-12-15-12.png)
+
+更改比较大小规则，且使用字符串大小比较特性：
+
+* 若拼接字符串$x+y>y+x$，则x大于y
+* 若拼接字符串$x+y<y+x$，则x小于y
+* 如"303"<"330"，则"3"要排在"30"的后面
+
+to_string()函数：将数字常量转换为字符串
+
+```c++
+string crackPassword(vector<int>& password) {
+    quickSort(password);
+    string ans = "";
+    for(int i = 0; i < password.size(); i++){
+        ans += to_string(password[i]);
+    }
+    return ans;
+}
+
+void qSort(vector<int>& nums, int l, int r){
+    if(l >= r) {return;}
+    int mid = rand() % (r - l + 1) + l;
+    string pivot = to_string(nums[mid]);
+    swap(nums[mid], nums[r]);
+    int i = l - 1;
+    for(int j = l; j <= r - 1; j++){
+        string tmp = to_string(nums[j]);
+        if(pivot + tmp > tmp + pivot){
+            i++;
+            swap(nums[j], nums[i]);
+        }
+    }
+    swap(nums[i+1], nums[r]);
+    qSort(nums, l, i);
+    qSort(nums, i+2, r);
+}
+
+void quickSort(vector<int>& nums){
+    qSort(nums, 0, nums.size() - 1);
+}
+```
+

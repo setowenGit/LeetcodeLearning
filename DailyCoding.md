@@ -1,6 +1,6 @@
 # Leetcode 每日一题
 
-## [课程表4 2023.09.12](https://leetcode.cn/problems/course-schedule-iv/description/)
+## [1462 课程表4 2023.09.12](https://leetcode.cn/problems/course-schedule-iv/description/)
 
 ![](./fig/1.jpg)
 
@@ -130,7 +130,7 @@ vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisi
 
 * 注意：由于DFS是从最深回溯到最浅的结点的，所以遍历的是cur的子树的子树，而BFS是从浅入深地，所以遍历的是cur的父节点
 
-## [检查骑士巡视方案 2023.09.13](https://leetcode.cn/problems/check-knight-tour-configuration/description/)
+## [2596 检查骑士巡视方案 2023.09.13](https://leetcode.cn/problems/check-knight-tour-configuration/description/)
 
 ![](./fig/4.jpg)
 
@@ -187,7 +187,7 @@ bool checkValidGrid(vector<vector<int>>& grid) {
 }
 ```
 
-## [可以攻击国王的皇后 2023.09.14](https://leetcode.cn/problems/queens-that-can-attack-the-king/description/)
+## [1222 可以攻击国王的皇后 2023.09.14](https://leetcode.cn/problems/queens-that-can-attack-the-king/description/)
 
 ![](./fig/5.jpg)
 
@@ -265,7 +265,7 @@ vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>
 }
 ```
 
-## [宝石补给 2023.09.15](https://leetcode.cn/problems/WHnhjV/description/)
+## [LCP50 宝石补给 2023.09.15](https://leetcode.cn/problems/WHnhjV/description/)
 
 ![](./fig/6.jpg)
 
@@ -308,7 +308,7 @@ vector<int> dp_processing(TreeNode* cur){
 }
 ```
 
-## [打家劫舍4 2023.09.19（难题）](https://leetcode.cn/problems/house-robber-iv/description/)
+## [2560 打家劫舍4 2023.09.19（难题）](https://leetcode.cn/problems/house-robber-iv/description/)
 ![](./fig/8.jpg)
 
 参考题解：https://leetcode.cn/problems/house-robber-iv/solutions/2094631/dao-ge-shua-ti-er-fen-fa-dong-tai-gui-hu-la3m/
@@ -446,7 +446,7 @@ int upper_bound3(vector<int>& nums, int target){
 
 > 视频 https://www.bilibili.com/video/BV1AP41137w7/?vd_source=1dc1f5616fa7bc05e0def8e62f42c924
 
-## [拿硬币 2023.09.20](https://leetcode.cn/problems/na-ying-bi/description/)
+## [LCP06 拿硬币 2023.09.20](https://leetcode.cn/problems/na-ying-bi/description/)
 ![](./fig/10.jpg)
 
 方法一：贪心（模拟）
@@ -462,7 +462,7 @@ int minCount(vector<int>& coins) {
 }
 ```
 
-## [收集树中金币 2023.09.21（难题）](https://leetcode.cn/problems/collect-coins-in-a-tree/description/)
+## [2603 收集树中金币 2023.09.21（难题）](https://leetcode.cn/problems/collect-coins-in-a-tree/description/)
 ![](./fig/11.jpg)
 ![](./fig/12.jpg)
 
@@ -524,7 +524,7 @@ int collectTheCoins(vector<int>& coins, vector<vector<int>>& edges) {
 }
 ```
 
-## [将钱分给最多的儿童 2023.09.22](https://leetcode.cn/problems/distribute-money-to-maximum-children/description/)
+## [2591 将钱分给最多的儿童 2023.09.22](https://leetcode.cn/problems/distribute-money-to-maximum-children/description/)
 
 ![](fig/2023-09-22-11-26-01.png)
 
@@ -542,7 +542,7 @@ int distMoney(int money, int children) {
 }
 ```
 
-## [递枕头 2023.09.26](https://leetcode.cn/problems/pass-the-pillow/description/)
+## [2582 递枕头 2023.09.26](https://leetcode.cn/problems/pass-the-pillow/description/)
 
 ![](fig/2023-09-26-10-32-08.png)
 
@@ -556,7 +556,7 @@ int passThePillow(int n, int time) {
 }
 ```
 
-## [餐厅过滤器 2023.09.27](https://leetcode.cn/problems/filter-restaurants-by-vegan-friendly-price-and-distance/description/)
+## [1333 餐厅过滤器 2023.09.27](https://leetcode.cn/problems/filter-restaurants-by-vegan-friendly-price-and-distance/description/)
 ![](fig/2023-09-27-10-39-25.png)
 
 方法一：数组处理+排序
@@ -607,7 +607,7 @@ sort(filter.begin(), filter.end(), [](vector<int> &v1, vector<int> &v2) -> bool 
 
 在函数判断里，返回true的排在前面，也就是说v1[1]>v2[1]时，返回true，则v1排在v2前面
 
-## [花期内花的数目 2023.09.28](https://leetcode.cn/problems/number-of-flowers-in-full-bloom/description/)
+## [2251 花期内花的数目 2023.09.28](https://leetcode.cn/problems/number-of-flowers-in-full-bloom/description/)
 
 ![](fig/2023-09-28-10-49-40.png)
 
@@ -684,7 +684,7 @@ vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) 
 }
 ```
 
-## [股票价格跨度 2023.10.07](https://leetcode.cn/problems/online-stock-span/description/)
+## [901 股票价格跨度 2023.10.07](https://leetcode.cn/problems/online-stock-span/description/)
 ![](fig/2023-10-08-10-26-13.png)
 
 方法一：单调栈
@@ -709,7 +709,7 @@ int next(int price) {
 }
 ```
 
-## [股票价格波动 2023.10.08](https://leetcode.cn/problems/stock-price-fluctuation/description/)
+## [2034 股票价格波动 2023.10.08](https://leetcode.cn/problems/stock-price-fluctuation/description/)
 ![](fig/2023-10-08-11-33-08.png)
 
 方法一：哈希表+多重有序集合
@@ -780,7 +780,7 @@ private:
 };
 ```
 
-## [最小和分割 2023.10.09](https://leetcode.cn/problems/split-with-minimum-sum/description/)
+## [2578 最小和分割 2023.10.09](https://leetcode.cn/problems/split-with-minimum-sum/description/)
 ![](fig/2023-10-09-22-30-27.png)
 
 方法一：贪心
@@ -803,7 +803,7 @@ int splitNum(int num) {
 }
 ```
 
-## [移动机器人 2023.10.10](https://leetcode.cn/problems/movement-of-robots/description/)
+## [2731 移动机器人 2023.10.10](https://leetcode.cn/problems/movement-of-robots/description/)
 ![](fig/2023-10-10-11-06-15.png)
 
 方法一：脑筋急转弯？
@@ -850,7 +850,7 @@ int sumDistance(vector<int>& nums, string s, int d) {
 }
 ```
 
-## [奖励最顶尖的K名学生 2023.10.11](https://leetcode.cn/problems/reward-top-k-students/description/)
+## [2512 奖励最顶尖的K名学生 2023.10.11](https://leetcode.cn/problems/reward-top-k-students/description/)
 
 ![](fig/2023-10-11-12-04-22.png)
 
@@ -960,7 +960,7 @@ vector<int> topStudents(vector<string>& positive_feedback, vector<string>& negat
 }
 ```
 
-## [找出数组的串联质 2023.10.12](https://leetcode.cn/problems/find-the-array-concatenation-value/description/)
+## [2562 找出数组的串联质 2023.10.12](https://leetcode.cn/problems/find-the-array-concatenation-value/description/)
 
 ![](fig/2023-10-12-12-30-18.png)
 
@@ -988,7 +988,7 @@ long long findTheArrayConcVal(vector<int>& nums) {
 }
 ```
 
-## [复原IP地址 2023.10.13（难题）](https://leetcode.cn/problems/restore-ip-addresses/description/)
+## [93 复原IP地址 2023.10.13（难题）](https://leetcode.cn/problems/restore-ip-addresses/description/)
 
 2023年阿里巴巴面试手撕代码题
 
@@ -1139,7 +1139,7 @@ public:
 };
 ```
 
-## [只出现一次的数字 2023.10.14](https://leetcode.cn/problems/single-number/description/)
+## [136 只出现一次的数字 2023.10.14](https://leetcode.cn/problems/single-number/description/)
 
 ![](fig/2023-10-14-14-12-49.png)
 
@@ -1157,7 +1157,7 @@ int singleNumber(vector<int>& nums) {
 }
 ```
 
-## [只出现一次的数字II 2023.10.15](https://leetcode.cn/problems/single-number-ii/description/)
+## [137 只出现一次的数字II 2023.10.15](https://leetcode.cn/problems/single-number-ii/description/)
 
 ![](fig/2023-10-16-11-21-03.png)
 
@@ -1181,7 +1181,7 @@ int singleNumber(vector<int>& nums) {
 }
 ```
 
-## [只出现一次的数字III 2023.10.16](https://leetcode.cn/problems/single-number-iii/description/)
+## [260 只出现一次的数字III 2023.10.16](https://leetcode.cn/problems/single-number-iii/description/)
 
 ![](fig/2023-10-16-11-01-48.png)
 
@@ -1204,6 +1204,39 @@ vector<int> singleNumber(vector<int>& nums) {
 }
 ```
 
+## [2652 倍数求和 2023.10.17](https://leetcode.cn/problems/sum-multiples/description/)
 
+![](fig/2023-10-17-10-32-05.png)
 
+方法一：直接模拟
+```c++
+int sumOfMultiples(int n) {
+    int ans = 0;
+    for(int i = 1; i <= n; i++){
+        if(i % 3 == 0 || i % 5 == 0 || i % 7 == 0){
+            ans += i;
+        }
+    }
+    return ans;
+}
+```
+方法二：容斥定理
 
+![](fig/2023-10-17-10-33-32.png)
+![](fig/2023-10-17-10-31-13.png)
+
+```c++
+class Solution {
+public:
+    int sumOfMultiples(int n) {
+        num = n;
+        return cal(3) + cal(5) + cal(7) - cal(3*5) - cal(3*7) - cal(5*7) + cal(3*5*7);
+    }
+    int cal(int s){
+        int k = num / s;
+        return k * (k + 1) * s / 2;
+    }
+private:
+    int num;
+};
+```
