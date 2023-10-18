@@ -1240,3 +1240,26 @@ private:
     int num;
 };
 ```
+
+## [2530 执行K次操作后的最大分数 2023.10.18](https://leetcode.cn/problems/maximal-score-after-applying-k-operations/description/)
+
+![](fig/2023-10-18-16-03-15.png)
+
+方法一：优先队列（大根堆）
+
+```c++
+long long maxKelements(vector<int>& nums, int k) {
+    long long ans = 0;
+    priority_queue<int, vector<int>> que;// 大根堆
+    for(auto n : nums){
+        que.emplace(n);
+    }
+    for(int i = 0; i < k; i++){
+        int tmp = que.top();
+        que.pop();
+        ans += tmp;
+        que.emplace((tmp + 2)/3);// 向上取整，不懂为什么ceil函数也是向下取整
+    }
+    return ans;
+}
+```
