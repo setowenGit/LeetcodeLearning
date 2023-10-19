@@ -1263,3 +1263,26 @@ long long maxKelements(vector<int>& nums, int k) {
     return ans;
 }
 ```
+
+## [1726 同积元组 2023.10.19](https://leetcode.cn/problems/tuple-with-same-product/description/)
+
+![](fig/2023-10-19-16-10-59.png)
+
+方法一：哈希表
+
+```c++
+int tupleSameProduct(vector<int>& nums) {
+    unordered_map<int, int> hash;
+    for(int i = 0; i < nums.size()-1; i++){
+        for(int j = i+1; j < nums.size(); j++){
+            int cal = nums[i] * nums[j];
+            hash[cal] ++;
+        }
+    }
+    int ans = 0;
+    for(auto &h : hash){
+        ans += (h.second * (h.second - 1) / 2 * 8);// 记住要乘上8，一个组合可以产生元素排序不同的8种元组
+    }
+    return ans;
+}
+```
