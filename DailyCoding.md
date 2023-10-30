@@ -1286,3 +1286,78 @@ int tupleSameProduct(vector<int>& nums) {
     return ans;
 }
 ```
+
+## [274 H指数 2023.10.30](https://leetcode.cn/problems/h-index/description/)
+
+![](fig/2023-10-30-12-13-45.png)
+
+方法一：排序
+
+![](fig/2023-10-30-12-13-31.png)
+
+```c++
+static bool cmp(int a, int b){
+    return a > b;
+}
+
+int hIndex(vector<int>& citations) {
+    sort(citations.begin(), citations.end(), cmp);
+    int h = 0, i = 0;
+    while(i < citations.size() && citations[i] > h){
+        h++;
+        i++;
+    }
+    return h;
+}
+```
+
+方法二：计数排序
+
+![](fig/2023-10-30-12-14-33.png)
+
+```c++
+int hIndex(vector<int>& citations) {
+    int n = citations.size(), sum = 0;
+    vector<int> counter(n + 1);
+    for(int i = 0; i < n; i++){
+        if(citations[i] >= n) {counter[n]++;}//引用超出n的论文当作引用为n计算
+        else {counter[citations[i]]++;}
+    }
+    for(int i = n; i >= 0; i--){
+        sum += counter[i];
+        if(sum >= i){//当累加论文数量大于等于引用次数时，即可返回
+            return i;
+        }
+    }
+    return 0;
+}
+```
+
+方法三：二分查找（重点）
+
+由于数组 citations 已经按照升序排序，因此可以使用二分查找。
+
+设查找范围的初始左边界 left 为 0, 初始右边界 right 为 n−1，其中 n 为数组 citations 的长度。每次在查找范围内取中点 mid，则有 n−mid 篇论文被引用了至少 citations[mid] 次。如果在查找过程中满足 citations[mid] < (n−mid)，则移动左边界 left，否则移动右边界 right。
+
+
+```c++
+int hIndex(vector<int>& citations) {
+    sort(citations.begin(), citations.end());
+    int n = citations.size();
+    int left = 0, right = n;
+    while(left < right){
+        int mid = (left + right)/2;
+        //当引用数大于等于citations[mid]的论文数量比citations[mid]大时，说明mid的右边可能存在更大的h
+        if(citations[mid] < (n - mid)) {left = mid + 1;}
+        //当引用数大于等于citations[mid]的论文数量比citations[mid]小时，说明h应该更小
+        else {right = mid;}
+    }
+    return n - left;//注意输出
+}
+```
+
+也可以看看这个[题解](https://leetcode.cn/problems/h-index-ii/solutions/2504326/tu-jie-yi-tu-zhang-wo-er-fen-da-an-si-ch-d15k/)，是不一样的二分查找思路，也说得很详细
+
+![](fig/2023-10-30-12-19-13.png)
+
+方法：二分查找，和上面的一样，只不过不用sort就可以直接处理了
