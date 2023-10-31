@@ -144,10 +144,11 @@ vector<string> restoreIpAddresses(string s) {
         return ans;
     }
 
-    
-
-
 int main(){
-    restoreIpAddresses("25525511135");
+    // restoreIpAddresses("25525511135");
+    // return 0;
+    string s;
+    cin >> s;
+    cout << s << endl;
     return 0;
 }

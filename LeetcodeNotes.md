@@ -332,3 +332,81 @@ void quickSort(vector<int>& nums){
 }
 ```
 
+#### （2）[LCR 159. 库存管理 III](https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/description/)
+
+![](fig/2023-10-31-11-07-41.png)
+
+```c++
+vector<int> inventoryManagement(vector<int>& stock, int cnt) {
+    quickSort(stock);
+    vector<int> ans;
+    for(int i = 0; i < cnt; i++){
+        ans.emplace_back(stock[i]);
+    }
+    return ans;
+}
+```
+
+#### （3）[215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/)
+
+![](fig/2023-10-31-12-00-37.png)
+
+方法一：直接排序后返回，但超时了
+
+```c++
+int findKthLargest(vector<int>& nums, int k) {
+    quickSort(nums);// 注意这里是降序排列
+    return nums[k-1];
+}
+```
+
+方法二：仍然是快速排序，但每次只考虑第K个元素所在的子数组，也仍然会超时
+
+```c++
+int findKthLargest(vector<int>& nums, int k) {
+    return quickSort(nums, k-1);// 降序排列，k-1是第k个最大元素的索引值
+}
+
+int qSort(vector<int>& nums, int l, int r, int k){
+    if(l >= r) {return nums[k];}
+    int i = rand() % (r-l+1) + l;
+    swap(nums[i], nums[r]);
+    i = l - 1;
+    for(int j = l; j <= r-1; j++){
+        if(nums[j] > nums[r]){
+            i++;
+            swap(nums[j], nums[i]);
+        }
+    }
+    swap(nums[i+1], nums[r]);
+    // 只考虑包含有第k个最大元素的那一部分，另一部分可以不排序，减少运行时间
+    if(k < i+1) {return qSort(nums, l, i, k);}
+    else if(k > i+1) {return qSort(nums, i+2, r, k);}
+    else {return nums[k];}
+}
+
+int quickSort(vector<int>& nums, int k){
+    return qSort(nums, 0, nums.size()-1, k);
+}
+```
+
+方法三：堆排序，弹出第K个元素后就可结束进程，不超时了
+
+```c++
+int findKthLargest(vector<int>& nums, int k) {
+    return heapSort(nums, k);
+}
+
+int heapSort(vector<int>& nums, int k){
+    int n = nums.size();
+    for(int i = n/2 -1; i >= 0; i--){
+        adjust(nums, i, n);
+    }
+    // 将前面k-1个最大的元素放到堆底，那么第k个最大元素此时再堆顶
+    for(int i = n - 1; i >= n - k + 1; i--){
+        swap(nums[0], nums[i]);
+        adjust(nums, 0, i);
+    }
+    return nums[0];
+}
+```
