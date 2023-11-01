@@ -410,3 +410,106 @@ int heapSort(vector<int>& nums, int k){
     return nums[0];
 }
 ```
+
+#### （3）[75. 颜色分类](https://leetcode.cn/problems/sort-colors/description/)
+
+![](fig/2023-11-01-11-18-25.png)
+
+方法：普通的快速排序即可
+
+### 堆排序习题
+
+#### （1）[347. 前K个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/description/)
+
+![](fig/2023-11-01-12-36-37.png)
+
+像是前K个高频元素或是第K个高频元素之类（如上面的215. 数组中的第K个最大元素也是）的题目，都可以优先考虑堆排序
+
+方法一：改造堆排序
+
+* **固定堆的大小为k**，且是小根堆，堆未满的时候可直接进堆排序，堆满了后比较堆顶元素和待进堆元素，若待进堆元素更大，则改变堆顶元素
+* 堆未满的时候相当于是全盘排序，保证父节点始终小于子节点；堆满后相当于只是把堆顶元素向下调整
+
+```c++
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int, int> nums_hash;// 存储数字及其出现的次数
+    for(auto& n : nums){
+        nums_hash[n]++;
+    }
+    vector<pair<int, int>> numsp;// 将哈希表放入数组中，用于排序
+    for(auto& n : nums_hash){
+        numsp.emplace_back(n);
+    }
+    vector<pair<int, int>> nums_heap;// 排序用到的堆，关于次数的小根堆
+    for(int p = 0; p < numsp.size(); p++){
+        // 固定堆的大小为k，当装入的元素数量小于k时，确保父节点一定小于其子节点
+        if(nums_heap.size() < k){
+            nums_heap.emplace_back(numsp[p]);
+            int n = nums_heap.size();
+            for(int i = n/2 - 1; i >= 0; i--){
+                adjust(nums_heap, i, n);
+            }
+        }
+        // 当堆已经满了后，比较堆顶元素和遍历到的元素，若遍历到的元素更大则取代原本的堆顶，再将新的堆顶向下调整
+        else{
+            if(numsp[p].second > nums_heap[0].second){
+                nums_heap[0] = numsp[p];
+                adjust(nums_heap, 0, nums_heap.size());
+            }
+        }
+    }
+    vector<int> ans;
+    for(int i = 0; i < nums_heap.size(); i++){
+        ans.emplace_back(nums_heap[i].first);
+    }
+    return ans;
+}
+
+void adjust(vector<pair<int, int>>& nums, int cur, int len){
+    while(2 * cur + 1 < len){
+        int c_left = 2 * cur + 1;
+        int c_right = 2 * cur + 2;
+        int c_large = (c_right < len && nums[c_right].second < nums[c_left].second) ? c_right : c_left;
+        if(nums[c_large].second < nums[cur].second){
+            swap(nums[c_large], nums[cur]);
+            cur = c_large;
+        }
+        else {break;}
+    }
+}
+```
+
+方法二：使用优先队列priority_queue来实现小根堆
+
+```c++
+static bool cmp(pair<int, int>& a, pair<int, int>& b){
+    return a.second > b.second;
+}
+
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int, int> nums_hash;// 存储数字及其出现的次数
+    for(auto& n : nums){
+        nums_hash[n]++;
+    }
+    // 使用优先级队列实现小根堆
+    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> que(cmp);
+    for(auto& [num, count] : nums_hash){
+        if(que.size() == k){
+            if(que.top().second < count){
+                que.pop();
+                que.emplace(num, count);
+            }
+            
+        }
+        else{
+            que.emplace(num, count);
+        }
+    }
+    vector<int> ans;
+    while(!que.empty()){
+        ans.emplace_back(que.top().first);
+        que.pop();
+    }
+    return ans;
+}
+```

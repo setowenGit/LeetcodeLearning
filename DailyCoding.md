@@ -350,7 +350,7 @@ bool dp_check(vector<int>& nums, int k, int mid){
 }
 ```
 
-####二分查找总结
+#### 二分查找总结
 
 * 找到**大于等于**目标值的**下界**的位置：lower_bound
 * 找到**大于**目标值的**下界**的位置：upper_bound
@@ -359,7 +359,7 @@ bool dp_check(vector<int>& nums, int k, int mid){
 
 ![](./fig/9.jpg)
 
-#####lower_bound的三种写法
+##### lower_bound的三种写法
 
 ```c++
 // 搜索第一个大于等于target的数的索引（左闭右闭写法）
