@@ -1361,3 +1361,87 @@ int hIndex(vector<int>& citations) {
 ![](fig/2023-10-30-12-19-13.png)
 
 方法：二分查找，和上面的一样，只不过不用sort就可以直接处理了
+
+## [116 填充每一个节点的下一个右侧节点指针 2023.11.03](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/description/)
+
+![](fig/2023-11-03-11-19-29.png)
+
+![](fig/2023-11-03-11-19-47.png)
+
+方法一：二叉树的层次遍历的改造
+
+主要针对tmp数组进行改造
+
+```c++
+Node* connect(Node* root) {
+    queue<Node*> que;
+    if(root != NULL) {que.push(root);}
+    while(!que.empty()){
+        int sz = que.size();
+        vector<Node*> tmp;
+        for(int i = 0; i < sz; i++){
+            Node* nnode = que.front();
+            que.pop();
+            tmp.emplace_back(nnode);
+            if(nnode->left) {que.push(nnode->left);}
+            if(nnode->right) {que.push(nnode->right);}
+        }
+        int sz_tmp = tmp.size();
+        for(int j = 0; j < sz_tmp - 1; j++){
+            tmp[j]->next = tmp[j+1];
+        }
+        tmp[sz_tmp-1]->next = NULL;
+    }
+    return root;
+}
+```
+
+对上面的方法进行进一步优化，省去tmp数组，直接处理next
+
+```c++
+Node* connect(Node* root) {
+    queue<Node*> que;
+    if(root != NULL) {que.push(root);}
+    while(!que.empty()){
+        int sz = que.size();
+        for(int i = 0; i < sz; i++){
+            Node* nnode = que.front();
+            que.pop();
+            if(i < sz - 1){
+                nnode->next = que.front();
+            }
+            if(nnode->left) {que.push(nnode->left);}
+            if(nnode->right) {que.push(nnode->right);}
+        }
+    }
+    return root;
+}
+```
+
+方法二：官方题解中的递归算法
+
+考虑两种处理next的情况
+
+![](fig/2023-11-03-11-27-47.png)
+![](fig/2023-11-03-11-28-04.png)
+
+```c++
+Node* connect(Node* root) {
+    if(!root || !root->left || !root->right){
+        return root;
+    }
+    root->left->next = root->right;// 情况1
+    if(root->next){// 情况2
+        root->right->next = root->next->left;
+    }
+    connect(root->left);
+    connect(root->right);
+    return root;
+}
+```
+
+## [117 填充每一个节点的下一个右侧节点指针Ⅱ](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/description/)
+
+![](fig/2023-11-03-11-54-49.png)
+
+使用上述方法一的方法即可
