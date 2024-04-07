@@ -287,7 +287,7 @@ vector<int> bucketSort(vector<int>& nums, int bucket_size){
 
 ### 快速排序习题
 
-#### （1）[LCR164 破解闯关密码](https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/description/)
+#### （1）[LCR 164. 破解闯关密码](https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/description/)
 
 ![](fig/2023-10-17-12-15-12.png)
 
