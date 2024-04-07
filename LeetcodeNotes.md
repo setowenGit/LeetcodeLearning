@@ -281,7 +281,7 @@ vector<int> bucketSort(vector<int>& nums, int bucket_size){
 }
 ```
 
-####(10) 基数排序（不用学习）
+#### (10) 基数排序（不用学习）
 
 由于基数排序只能用在非负数数组的排序，局限性很大，故一般不使用
 
@@ -293,8 +293,8 @@ vector<int> bucketSort(vector<int>& nums, int bucket_size){
 
 更改比较大小规则，且使用字符串大小比较特性：
 
-* 若拼接字符串$x+y>y+x$，则x大于y
-* 若拼接字符串$x+y<y+x$，则x小于y
+* 若拼接字符串 $x+y>y+x$ ，则x大于y
+* 若拼接字符串 $x+y<y+x$ ，则x小于y
 * 如"303"<"330"，则"3"要排在"30"的后面
 
 to_string()函数：将数字常量转换为字符串
